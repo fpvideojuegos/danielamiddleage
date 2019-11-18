@@ -1,10 +1,10 @@
 # Daniela Middle Age
 ## Members:
   * Román Pastushenko Slautskiy
-  * Fabio Benitez Ramirez
+  * Skoda Fabia Benitez Ramirez
   * Javier Molina Maqueda
-  * Rubén Aguilar García
-  * Alvaro López García
-  
+  * Rubén Barbanegra García
+  * Alvaro López García 'el Pelusa'
+  * Alejandro Morales Conejo
   
   
