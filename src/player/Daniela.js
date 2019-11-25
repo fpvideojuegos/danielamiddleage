@@ -21,14 +21,13 @@ class Daniela extends Phaser.GameObjects.Sprite {
         //boolean to avoid multiple overlap when collecting coins
         this.hitCoin = false;
 
-
         //Time
         this.seconds = 1;
         //Maximo tiempo por nivel 600 seg = 10 min
         this.secondsLevel = 600;
         //Extra point recogidas
         this.extraPoints = 0;
-
+        
         //Animaciones en funcion del Sprite
         if (this.key === GameConstants.Sprites.DanielaTroglo) {
             this.animIDLE = GameConstants.Anims.DanielaTroglo.IDLE;
