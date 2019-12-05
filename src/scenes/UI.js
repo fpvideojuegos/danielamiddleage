@@ -40,7 +40,7 @@ class UI extends Phaser.Scene {
         playAgainButton.setInteractive();
         playAgainButton.on('pointerdown', () => {
             this.registry.events.emit(GameConstants.Events.PLAYAGAIN);
-            console.log(playAgainButton);
+            
         });
 
         //boton de inventario
@@ -50,7 +50,7 @@ class UI extends Phaser.Scene {
             inventoryButton.setInteractive();
             inventoryButton.on('pointerdown', () => {
             this.registry.events.emit(GameConstants.Events.INVENTORY);
-                console.log(inventoryButton);
+                
         });
 
 

@@ -75,10 +75,10 @@ class Level6 extends BasicScene {
         this.physics.add.overlap(this.daniela, mapGroup, (player, object) => {
             let mask = new BackgroundMask(this);
             mask.show();
-            
+            console.log(object.mapId);
             lastMap.x = object.x;
             lastMap.y = object.y;
-
+            console.log(object.x , object.y);
             let mapImage = this.add.image(this.daniela.x + 150, this.daniela.y - 75, object.mapId).setDepth(1).setScale(0.35);
             mapImage.setInteractive();
             

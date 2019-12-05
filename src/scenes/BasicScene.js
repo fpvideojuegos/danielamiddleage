@@ -5,8 +5,8 @@ import FlyingEnemy from "../gameObjects/FlyingEnemy.js";
 import FloorEnemy from "../gameObjects/FloorEnemy.js";
 import ExtraPoints from "../gameObjects/ExtraPoints.js";
 import Invisible from "../gameObjects/Invisible.js";
-
-
+import BackgroundMask from "../gameObjects/BackgroundMask.js";
+import Map from "../gameObjects/Map.js";
 /**
  * SceneObject BasicScene
  *
@@ -102,8 +102,9 @@ class BasicScene extends Phaser.Scene {
 
                 //Evento de inventario
                 this.registry.events.on(GameConstants.Events.INVENTORY, () => {
-                    console.log("esto abre el menu");
-                    this.createMap();
+                    this.sound.stopAll();
+                    /*this.physics.pause();*/
+                    this.showInventory();
                 });
 
                 //Eventos de Controles
@@ -619,6 +620,48 @@ class BasicScene extends Phaser.Scene {
 
     showInventory(){
         console.log("inventario");
+
+        let lastMap = {x: this.daniela.x, y: this.daniela.y};
+        let mapGroup = this.physics.add.group();
+        this.map.findObject('Maps', m => {
+            if (m.type === 'Map') {
+                let map = mapGroup.create(m.x, m.y);
+                map.mapId = m.properties[0].value;
+                this.anims.play(GameConstants.Anims.MAP, map);
+                mapGroup.add(map);
+            }
+        });
+        mapGroup.children.iterate(m => m.body.setAllowGravity(false));
+
+        let mask = new BackgroundMask(this);
+            mask.show();
+            
+             lastMap.x = 320;
+             lastMap.y = 576;
+
+            let mapImage = this.add.image(this.daniela.x + 150, this.daniela.y - 75, 'map_1').setDepth(1).setScale(0.35);
+            mapImage.setInteractive();
+            
+            let closed = false;
+            mapImage.on('pointerdown', () => {
+                closed=true; 
+                this.closeMap(mask, mapImage);                
+            });
+            
+            this.daniela.body.setVelocity(0, 0);
+            this.scene.scene.physics.pause();
+            this.scene.scene.time.addEvent({
+                delay: 5000,
+                callback: () => {
+                    if (!closed) this.closeMap(mask, mapImage);                 
+                }
+            });
+    }
+
+    closeMap(mask, mapImage){
+        mask.hide();
+        mapImage.destroy();
+        this.scene.scene.physics.resume();
     }
 
     playMenuScenesBSO(){
