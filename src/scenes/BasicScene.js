@@ -100,6 +100,12 @@ class BasicScene extends Phaser.Scene {
                     this.changeScene(this.daniela.scene, this.daniela.scene, 0);
                 });
 
+                //Evento de inventario
+                this.registry.events.on(GameConstants.Events.INVENTORY, () => {
+                    console.log("esto abre el menu");
+                    this.createMap();
+                });
+
                 //Eventos de Controles
                 this.registry.events.on('controlLeftON', () => {
                     this.daniela.animControl.left = true;
@@ -609,6 +615,10 @@ class BasicScene extends Phaser.Scene {
             this.changeScene(this.daniela.scene, this.daniela.scene.target, 500);
         });        
 
+    }
+
+    showInventory(){
+        console.log("inventario");
     }
 
     playMenuScenesBSO(){

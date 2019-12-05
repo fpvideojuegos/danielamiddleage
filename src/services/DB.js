@@ -58,3 +58,7 @@ const DB = {
      createDB,
      DB
  };
+
+ //mirar basicscene donde se llaman los eventos
+ //dentro de ui Crear un menu
+ //gameconstant estan definidas las constantes

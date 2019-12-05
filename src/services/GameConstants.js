@@ -162,6 +162,9 @@ const GameConstants = {
         PlayAgain: {
             KEY: 'playagain'
         },
+        Inventory:{
+            KEY: 'inventory'
+        },
         Play:{
             KEY: 'play'
         },
@@ -363,7 +366,8 @@ const GameConstants = {
         GAME_OVER: 'GameOver',
         LEVEL_FINISHED: 'Win',
         MENU: 'Menu',
-        PLAYAGAIN: 'PlayAgain'
+        PLAYAGAIN: 'PlayAgain',
+        INVENTORY: 'Inventory'
     },
     Settings: {
         FLAG_ES: 'es_flag',
