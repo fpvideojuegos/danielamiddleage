@@ -103,7 +103,7 @@ class Daniela extends Phaser.GameObjects.Sprite {
         this.soundJump = this.scene.sound.add(GameConstants.Sound.SOUNDS.DANIELA_JUMP);
         this.soundDanielaAuch = this.scene.sound.add(GameConstants.Sound.SOUNDS.DANIELA_AUCH);
         this.coinpickup = this.scene.sound.add(GameConstants.Sound.BONUSLEVEL.COINPICKUP);
-
+        this.walk = this.scene.sound.add(GameConstants.Sound.SOUNDS.DANIELA_WALK);
         this.lolo = null;
     }
 
@@ -156,8 +156,10 @@ class Daniela extends Phaser.GameObjects.Sprite {
             } else {
                 if (control.left) {
                     this.moverLeftRight(GameConstants.Anims.Direction.LEFT);
+                    this.walk.play();
                 } else if (control.right) {
                     this.moverLeftRight(GameConstants.Anims.Direction.RIGHT);
+                    this.walk.play();
                 } else if (this.body.blocked.down) {
                     // Fricción con el suelo 
 
