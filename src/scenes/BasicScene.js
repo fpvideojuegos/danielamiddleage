@@ -38,6 +38,8 @@ class BasicScene extends Phaser.Scene {
         this.levelTiles = [];
         this.levelLayers = [];
         this.textHealth;
+        this.openInventory = false;
+      
     }
 
     /**
@@ -47,7 +49,9 @@ class BasicScene extends Phaser.Scene {
      */
     preload() {
         console.log(this.key);
-        this.scene.launch(GameConstants.Levels.UI,{scene:this.key});
+        this.scene.launch(GameConstants.Levels.UI, {
+            scene: this.key
+        });
     }
 
     /**
@@ -96,7 +100,7 @@ class BasicScene extends Phaser.Scene {
 
                 //Play Again Event
                 this.registry.events.on(GameConstants.Events.PLAYAGAIN, () => {
-                    this.sound.stopAll();                    
+                    this.sound.stopAll();
                     this.changeScene(this.daniela.scene, this.daniela.scene, 0);
                 });
 
@@ -104,7 +108,11 @@ class BasicScene extends Phaser.Scene {
                 this.registry.events.on(GameConstants.Events.INVENTORY, () => {
                     this.sound.stopAll();
                     /*this.physics.pause();*/
-                    this.showInventory();
+                    if(this.openInventory == false){
+                        this.showInventory();
+                    this.openInventory = true;
+                    }
+                    
                 });
 
                 //Eventos de Controles
@@ -140,8 +148,8 @@ class BasicScene extends Phaser.Scene {
                     this.daniela.animControl.down = false;
                 });
 
-                this.createLolo(this.daniela,createLolo);
-                
+                this.createLolo(this.daniela, createLolo);
+
                 return this.daniela;
             } else {
                 console.error("No se ha encontrado a daniela en el tilemap");
@@ -164,14 +172,14 @@ class BasicScene extends Phaser.Scene {
      */
     createLolo(daniela = this.daniela, normal) {
         let clothes;
-        if (normal)  clothes = GameConstants.Sprites.Lolo_Normal.KEY;
+        if (normal) clothes = GameConstants.Sprites.Lolo_Normal.KEY;
         else clothes = GameConstants.Sprites.Lolo_Troglodita.KEY;
         this.lolo = new Lolo({
             scene: this,
             x: daniela.x - 50,
             y: daniela.y - 50,
             key: clothes,
-            normal_anim : normal
+            normal_anim: normal
         }).setScale(1);
         this.daniela.followedBy(this.lolo);
         return this.lolo;
@@ -239,13 +247,13 @@ class BasicScene extends Phaser.Scene {
                     this.anims.play(GameConstants.Anims.SNAILS, this.snails);
                     break;
                 case GameConstants.Sprites.Spiders.OBJECT_NAME:
-                    this.spiders = this.createEnemies(GameConstants.Sprites.Spiders.OBJECT_NAME, GameConstants.Sprites.Spiders.OBJECT_ID, GameConstants.Sprites.Spiders.KEY);                    
+                    this.spiders = this.createEnemies(GameConstants.Sprites.Spiders.OBJECT_NAME, GameConstants.Sprites.Spiders.OBJECT_ID, GameConstants.Sprites.Spiders.KEY);
                     this.enemyGroups.spidersGroup = new FlyingEnemy(this.physics.world, this, [], this.spiders);
                     this.enemyGroups.spidersGroup.children.iterate(s => s.setScale(1));
                     this.anims.play(GameConstants.Anims.SPIDERS, this.spiders);
                     break;
                 case GameConstants.Sprites.Mosquitos.OBJECT_NAME:
-                    this.mosquitos = this.createEnemies(GameConstants.Sprites.Mosquitos.OBJECT_NAME, GameConstants.Sprites.Mosquitos.OBJECT_ID, GameConstants.Sprites.Mosquitos.KEY);                 
+                    this.mosquitos = this.createEnemies(GameConstants.Sprites.Mosquitos.OBJECT_NAME, GameConstants.Sprites.Mosquitos.OBJECT_ID, GameConstants.Sprites.Mosquitos.KEY);
                     this.enemyGroups.mosquitosGroup = new FlyingEnemy(this.physics.world, this, [], this.mosquitos);
                     //this.enemyGroups.mosquitosGroup.children.iterate(s => s.setScale(1));
                     this.anims.play(GameConstants.Anims.MOSQUITOS, this.mosquitos);
@@ -403,7 +411,7 @@ class BasicScene extends Phaser.Scene {
      *
      * @returns Phaser.Tilemaps. DynamicTilemapLayer
      */
-    paintLayerAndCreateCollision(tileSet, dynamicLayer = GameConstants.Layers.WORLD, collisionWithPlayerAndEnemies = true) {        
+    paintLayerAndCreateCollision(tileSet, dynamicLayer = GameConstants.Layers.WORLD, collisionWithPlayerAndEnemies = true) {
         this.levelTiles[this.levelTiles.length] = this.map.addTilesetImage(tileSet);
         let level = this.levelTiles[this.levelTiles.length - 1];
         this.levelLayers[this.levelLayers.length] = this.map.createDynamicLayer(dynamicLayer, level, 0, 0);
@@ -471,25 +479,27 @@ class BasicScene extends Phaser.Scene {
                         //if next level is in the menu levels
                         //and if is menu main and don't come from these 
                         //then stop music
-                        if ( 
-                            ( (target!=GameConstants.Levels.LEVELSELECT && 
-                            target!=GameConstants.Levels.SCORES &&
-                            target!=GameConstants.Levels.SETTINGSLEVEL && 
-                            target!=GameConstants.Levels.CREDITS) &&
-                            (target==GameConstants.Levels.MENU && 
-                                (scene.key!=GameConstants.Levels.LEVELSELECT && 
-                                scene.key!=GameConstants.Levels.SCORES &&
-                                scene.key!=GameConstants.Levels.SETTINGSLEVEL &&
-                                scene.key!=GameConstants.Levels.CREDITS)
-                            )) || (scene.key==GameConstants.Levels.LEVELSELECT && target!=GameConstants.Levels.MENU) 
-                            || (target==GameConstants.Levels.INTROSTORY) 
-                            || (target==GameConstants.Levels.LEVELSELECT && scene.key!=GameConstants.Levels.MENU)
-                            ) {
+                        if (
+                            ((target != GameConstants.Levels.LEVELSELECT &&
+                                    target != GameConstants.Levels.SCORES &&
+                                    target != GameConstants.Levels.SETTINGSLEVEL &&
+                                    target != GameConstants.Levels.CREDITS) &&
+                                (target == GameConstants.Levels.MENU &&
+                                    (scene.key != GameConstants.Levels.LEVELSELECT &&
+                                        scene.key != GameConstants.Levels.SCORES &&
+                                        scene.key != GameConstants.Levels.SETTINGSLEVEL &&
+                                        scene.key != GameConstants.Levels.CREDITS)
+                                )) || (scene.key == GameConstants.Levels.LEVELSELECT && target != GameConstants.Levels.MENU) ||
+                            (target == GameConstants.Levels.INTROSTORY) ||
+                            (target == GameConstants.Levels.LEVELSELECT && scene.key != GameConstants.Levels.MENU)
+                        ) {
                             scene.sound.stopAll();
-                        }                        
+                        }
 
                         scene.scene.stop();
-                        scene.scene.start(target, {from:scene.key});
+                        scene.scene.start(target, {
+                            from: scene.key
+                        });
                     });
                 },
                 callbackScope: this
@@ -614,61 +624,58 @@ class BasicScene extends Phaser.Scene {
 
         nextLevelLabel.on('pointerdown', () => {
             this.changeScene(this.daniela.scene, this.daniela.scene.target, 500);
-        });        
+        });
 
     }
 
-    showInventory(){
+    showInventory() {
         console.log("inventario");
 
-        let lastMap = {x: this.daniela.x, y: this.daniela.y};
-        let mapGroup = this.physics.add.group();
-        this.map.findObject('Maps', m => {
-            if (m.type === 'Map') {
-                let map = mapGroup.create(m.x, m.y);
-                map.mapId = m.properties[0].value;
-                this.anims.play(GameConstants.Anims.MAP, map);
-                mapGroup.add(map);
-            }
-        });
-        mapGroup.children.iterate(m => m.body.setAllowGravity(false));
+        let lastMap = {
+            x: this.daniela.x,
+            y: this.daniela.y
+        };
 
         let mask = new BackgroundMask(this);
-            mask.show();
-            
-             lastMap.x = 320;
-             lastMap.y = 576;
+        mask.show();
 
-            let mapImage = this.add.image(this.daniela.x + 150, this.daniela.y - 75, 'map_1').setDepth(1).setScale(0.35);
-            mapImage.setInteractive();
-            
-            let closed = false;
-            mapImage.on('pointerdown', () => {
-                closed=true; 
-                this.closeMap(mask, mapImage);                
-            });
-            
-            this.daniela.body.setVelocity(0, 0);
-            this.scene.scene.physics.pause();
-            this.scene.scene.time.addEvent({
-                delay: 5000,
-                callback: () => {
-                    if (!closed) this.closeMap(mask, mapImage);                 
-                }
-            });
+        lastMap.x = 320;
+        lastMap.y = 576;
+
+        let mapImage = this.add.image(this.daniela.x + 150, this.daniela.y - 30, 'map_1').setDepth(1).setScale(0.35);
+        mapImage.setInteractive();
+
+        let closed = false;
+        mapImage.on('pointerdown', () => {
+            mask.hide();
+            mapImage.destroy();
+            this.scene.scene.physics.resume();
+            this.openInventory = false;
+        });
+
+       this.danielaSave.body.setVelocity(0, 0);
+        this.scene.scene.physics.pause();
+        this.scene.scene.time.addEvent({
+            delay: 5000,
+            callback: () => {
+                if (!closed) this.closeMap(mask, mapImage);
+            }
+        });
     }
 
-    closeMap(mask, mapImage){
+    closeMap(mask, mapImage) {
         mask.hide();
         mapImage.destroy();
         this.scene.scene.physics.resume();
     }
 
-    playMenuScenesBSO(){
-        this.bgmusic = this.sound.add(GameConstants.Sound.MAIN.BSO, {volume: 0.65});
-        this.addEventForMusic(this.bgmusic,true,200);
+    playMenuScenesBSO() {
+        this.bgmusic = this.sound.add(GameConstants.Sound.MAIN.BSO, {
+            volume: 0.65
+        });
+        this.addEventForMusic(this.bgmusic, true, 200);
         this.birdMusic = this.sound.add(GameConstants.Sound.SOUNDS.BIRD_SINGING);
-        this.addEventForMusic(this.birdMusic,true,200);
+        this.addEventForMusic(this.birdMusic, true, 200);
     }
 
 }
