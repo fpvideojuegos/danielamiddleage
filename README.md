@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PRIVET GAMEDEV
 
 Las históricas aventuras de Daniela.
@@ -19,3 +20,15 @@ Alejandro Puche
 
 
 Y con la colaboración especial de dos programadores indies Francisco Pereira Alvarado twitter: @gammafp y Bárbara Bris twitter: @barbrilue que aportarán su experiencia y sus conocimientos técnicos para que ambos niveles FP y Primaria aprendan de la creación de un videojuego real.
+=======
+# Daniela Middle Age
+## Members:
+  * Román Pastushenko Slautskiy
+  * FabioENP Benitez Ramirez
+  * Javier Molina Maqueda 'The new messi'
+  * Rubén Barbanegra García
+  * Alvaro López García 'el Pelusa'
+  * Alejandro Morales Conejillo de Indias
+  
+  
+>>>>>>> 1cc11e0bce6dba04d9c62372fffb61a453a2d88b

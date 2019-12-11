@@ -13,7 +13,8 @@
         "LEVEL": "LEVEL",   
         "LEVELDONE": "Level completed",
         "LEVELFINISHED": "Level completed with full stars",
-        "LEVELNOTDONE": "Level not completed yet"     
+        "LEVELNOTDONE": "Level not completed yet" ,
+         
     },
     "SETTINGLEVEL": {
         "SOUND": "SOUND",

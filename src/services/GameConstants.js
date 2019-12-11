@@ -73,7 +73,8 @@ const GameConstants = {
             DANIELA_JUMP: 'soundJump',
             DANIELA_AUCH: 'danielaAuch',
             LEVELUP : 'levelUp',
-            BIRD_SINGING : 'BirdSinging'
+            BIRD_SINGING : 'BirdSinging',
+            DANIELA_WALK : 'walk'
         },
         MAIN:{
             BSO: 'Main_BSO'
@@ -161,6 +162,9 @@ const GameConstants = {
         },
         PlayAgain: {
             KEY: 'playagain'
+        },
+        Inventory:{
+            KEY: 'inventory'
         },
         Play:{
             KEY: 'play'
@@ -367,7 +371,8 @@ const GameConstants = {
         GAME_OVER: 'GameOver',
         LEVEL_FINISHED: 'Win',
         MENU: 'Menu',
-        PLAYAGAIN: 'PlayAgain'
+        PLAYAGAIN: 'PlayAgain',
+        INVENTORY: 'Inventory'
     },
     Settings: {
         FLAG_ES: 'es_flag',

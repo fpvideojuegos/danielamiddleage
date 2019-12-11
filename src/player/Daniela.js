@@ -21,14 +21,13 @@ class Daniela extends Phaser.GameObjects.Sprite {
         //boolean to avoid multiple overlap when collecting coins
         this.hitCoin = false;
 
-
         //Time
         this.seconds = 1;
         //Maximo tiempo por nivel 600 seg = 10 min
         this.secondsLevel = 600;
         //Extra point recogidas
         this.extraPoints = 0;
-
+        
         //Animaciones en funcion del Sprite
         if (this.key === GameConstants.Sprites.DanielaTroglo) {
             this.animIDLE = GameConstants.Anims.DanielaTroglo.IDLE;
@@ -104,7 +103,7 @@ class Daniela extends Phaser.GameObjects.Sprite {
         this.soundJump = this.scene.sound.add(GameConstants.Sound.SOUNDS.DANIELA_JUMP);
         this.soundDanielaAuch = this.scene.sound.add(GameConstants.Sound.SOUNDS.DANIELA_AUCH);
         this.coinpickup = this.scene.sound.add(GameConstants.Sound.BONUSLEVEL.COINPICKUP);
-
+        this.walk = this.scene.sound.add(GameConstants.Sound.SOUNDS.DANIELA_WALK);
         this.lolo = null;
     }
 
@@ -157,8 +156,10 @@ class Daniela extends Phaser.GameObjects.Sprite {
             } else {
                 if (control.left) {
                     this.moverLeftRight(GameConstants.Anims.Direction.LEFT);
+                    this.walk.play();
                 } else if (control.right) {
                     this.moverLeftRight(GameConstants.Anims.Direction.RIGHT);
+                    this.walk.play();
                 } else if (this.body.blocked.down) {
                     // Fricción con el suelo 
 

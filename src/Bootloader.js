@@ -87,7 +87,7 @@ class Bootloader extends Phaser.Scene {
         //Menu
         this.load.image('bg_Menu', 'img/backgrounds/dibujoPortadaEscaneado.png');
         //Level1
-        this.load.image('bg_Level1', 'img/backgrounds/2560x1440-snapSat1800.jpg');
+        this.load.image('bg_Level1', 'img/backgrounds/2560x1440-snapSat1800.png');
         //Se cambiara por un dibujo de los niños de una cueva
         //Ahora mismo esta de ejemplo
         //http://kidskunst.info/46/05451-2d-game-background-cave.htm
@@ -208,6 +208,9 @@ class Bootloader extends Phaser.Scene {
         //play
         this.load.image("playagain", "img/objects/playagain.png");
         
+        //inventory
+        this.load.image("inventory", "img/objects/inventory.png");
+
         //play Again
         this.load.image("play", "img/objects/PlayButton.png");
 

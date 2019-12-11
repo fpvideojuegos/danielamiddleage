@@ -34,7 +34,7 @@ class Level3 extends BasicScene {
         this.findTransparentObjects(GameConstants.Layers.SPIKES,GameConstants.Sprites.Spike.KEY, true);
         
         //FRUITS COLLECTED
-        this.fruitsCollected = 10;
+        this.fruitsCollected = 5;
         this.fruitDelay = false;
 
 
@@ -81,8 +81,8 @@ class Level3 extends BasicScene {
         this.mamuts = this.createEndLevelObject(GameConstants.Sprites.Mamut.KEY);
         this.physics.world.enable(this.mamuts);
         this.mamut = this.mamuts[0];
-        this.mamut.setScale(0.55);
-        this.mamut.body.setSize(200, 20);
+        this.mamut.setScale(0.3);
+        this.mamut.body.setSize(156, 79);
         this.mamut.body.setImmovable(true);
         this.mamut.body.setAllowGravity(false);
       //  console.log(this.mamut);
@@ -91,13 +91,13 @@ class Level3 extends BasicScene {
         //FRUITS
         //TODO: Modify with new Classes
         //Avocado, Straberry, Cherry, Banana, Watermelon
-        this.fruitsArray = ["avocado.png", "banana.png", "cherry.png", "cherry.png", "watermelon.png"];
+        
 
         //this.fruit = this.add.sprite(100,200,"fruits",this.fruits[2]);
-        this.fruits = this.map.createFromObjects('Fruits', 'fruit', {key: 'fruits'});
+        this.fruits = this.map.createFromObjects('Fruits', 'fruit');
         this.fruitsGroup = this.physics.add.group();
         this.fruits.map((sprite) => {
-            let newsprite = this.add.sprite(sprite.x, sprite.y, "fruits", this.fruitsArray[Phaser.Math.Between(0, 4)]);
+            let newsprite = this.add.sprite(sprite.x, sprite.y, "fruits");
             sprite.destroy();
             this.fruitsGroup.add(newsprite);
         });

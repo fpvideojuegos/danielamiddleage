@@ -21,11 +21,12 @@ class Level1 extends BasicScene {
         //HealthText
         this.createHealthText();
         //Tilemap
-        this.paintLayerAndCreateCollision(GameConstants.Tiles.CAVE_STONE);
+        this.paintLayerAndCreateCollision(GameConstants.Tiles.CASTLE, GameConstants.Layers.WORLD, true);
 
         //PRIVATE SCENE ELEMENTS
         //Creacion de elementos decorativos
-        this.paintLayerAndCreateCollision(GameConstants.Tiles.CAVE_STONE, GameConstants.Layers.LANDSCAPE, false);
+        this.paintLayerAndCreateCollision(GameConstants.Tiles.CASTLE, GameConstants.Layers.LANDSCAPE, false);
+        //this.paintLayerAndCreateCollision(GameConstants.Tiles.CASTLE, GameConstants.Layers.WORLD, true);
         //Creacion de objetos invisibles que dañaran a daniela
         this.findTransparentObjects(GameConstants.Layers.SPIKES, GameConstants.Sprites.Spike.KEY, true);
 

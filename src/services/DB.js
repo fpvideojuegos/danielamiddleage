@@ -18,6 +18,7 @@ const DB = {
     maxLevel: 'Level1', //Last Level achieved
     extralifes : 0,
     sound: true,
+    items: {joystick: false},
     worlds: {
         Level1: {            
             completed: false,
@@ -57,3 +58,7 @@ const DB = {
      createDB,
      DB
  };
+
+ //mirar basicscene donde se llaman los eventos
+ //dentro de ui Crear un menu
+ //gameconstant estan definidas las constantes

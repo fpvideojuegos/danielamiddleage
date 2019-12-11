@@ -1,6 +1,7 @@
 import BasicScene from "./BasicScene.js";
 import GameConstants from "../services/GameConstants.js";
-
+import Map from "../gameObjects/Map.js";
+import DB from "../services/DB.js";
 
 class Level2 extends BasicScene {
     constructor() {
@@ -88,11 +89,25 @@ class Level2 extends BasicScene {
             this.daniela.y = lastMap.y;
         });
 
+
+        //DB ACCESS
+        
         //Wall collider        
         this.physics.add.collider(this.daniela, this.joystick, () => {
             this.joystick.destroy();
             wall.setCollisionByExclusion([0]);
             wall.alpha=0;
+            //joystick collector
+
+                //gets the database instance
+            this.DB = store.get(GameConstants.DB.DBNAME);
+                //Sets the localstorage value
+            this.DB.items.joystick = true;
+                //Sets the localstorage in the database
+            store.set(GameConstants.DB.DBNAME, this.DB);    
+            
+            
+
         });
 
         this.physics.add.collider(this.daniela, this.joystick2, () => {
