@@ -18,7 +18,7 @@ const DB = {
     maxLevel: 'Level1', //Last Level achieved
     extralifes : 0,
     sound: true,
-    items: {joystick: false},
+    items: {joystick: false , keys: 0},
     worlds: {
         Level1: {            
             completed: false,

@@ -642,13 +642,24 @@ class BasicScene extends Phaser.Scene {
         lastMap.x = 320;
         lastMap.y = 576;
 
-        let mapImage = this.add.image(this.daniela.x + 150, this.daniela.y - 30, 'map_1').setDepth(1).setScale(0.35);
+        let mapImage = this.add.image(this.daniela.x + 150, this.daniela.y - 30, 'inventoryBg').setDepth(1).setScale(0.35);
         mapImage.setInteractive();
+
+
+        //key collection
+            //gets the database instance
+            this.DB = store.get(GameConstants.DB.DBNAME);
+            //Sets the localstorage value
+            if(this.DB.items.keys > 0)  {
+            var keyImage = this.add.image(this.daniela.x + 160, this.daniela.y - 40, 'joystick').setDepth(1).setScale(0.35);
+            }
 
         let closed = false;
         mapImage.on('pointerdown', () => {
             mask.hide();
             mapImage.destroy();
+            keyImage.destroy();
+            console.log(keyImage.destroy());
             this.scene.scene.physics.resume();
             this.openInventory = false;
         });

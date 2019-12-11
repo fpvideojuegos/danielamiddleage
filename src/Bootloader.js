@@ -210,6 +210,7 @@ class Bootloader extends Phaser.Scene {
         
         //inventory
         this.load.image("inventory", "img/objects/inventory.png");
+        this.load.image("inventoryBg",'img/objects/inventory/inventoryBg.png');
 
         //play Again
         this.load.image("play", "img/objects/PlayButton.png");

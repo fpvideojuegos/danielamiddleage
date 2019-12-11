@@ -106,7 +106,8 @@ class Bootloader extends Phaser.Scene {
         //Level 5 
         this.load.image("bg_Level5", "img/backgrounds/bg_level5.png");
         
-        
+        //Inventory
+        this.load.image("inventoryBg",'img/objects/inventory/inventoryBg.png');
         
         //Level 6
         this.load.image("bg_Level6", "img/backgrounds/bg_volcano.png");
