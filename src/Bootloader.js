@@ -192,10 +192,9 @@ class Bootloader extends Phaser.Scene {
         this.load.image('water', 'img/objects/water-tile.png');
 
         //Joystick        
-        this.load.atlas('joystick', 'img/objects/joystick/joystick.png', 'img/objects/joystick/joystick_atlas.json');
-        this.load.animation('joystickAnim', 'img/objects/joystick/joystick_anim.json');
-
-
+        this.load.image('joystick', 'img/objects/joystick/joystick.png');
+        //Joystick2
+        this.load.image('joystick2', 'img/objects/joystick/joystick2.png');
         //Level2 Platform
         this.load.image("platform", "img/objects/platform.png");
 

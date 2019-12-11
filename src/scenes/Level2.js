@@ -17,7 +17,7 @@ class Level2 extends BasicScene {
     
     create() {
         //Daniela Creation
-        this.createDaniela(GameConstants.Sprites.Daniela.KEY, false);
+        this.createDaniela(GameConstants.Sprites.DanielaTroglo, false);
         //Background
         this.createRepeatedBackground(GameConstants.Textures.BG_LEVEL2, defaultStatus, defaultStatus,{x:1.25,y:1.25});
         //Finding enemies in json map
@@ -29,10 +29,14 @@ class Level2 extends BasicScene {
         //Tilemap
         this.paintLayerAndCreateCollision(GameConstants.Tiles.CASTLE);
         this.paintLayerAndCreateCollision(GameConstants.Tiles.CASTLE, 'Landscape', false);
-        this.paintLayerAndCreateCollision(GameConstants.Tiles.FOREST_PACK, 'Landscape2', false);
+        this.paintLayerAndCreateCollision(GameConstants.Tiles.CASTLE, 'Landscape2', false);
+
+                //Objeto mapa
+                let lastMap = {x: this.daniela.x, y: this.daniela.y};
 
         //PRIVATE SCENE ELEMENTS
         let wall =  this.paintLayerAndCreateCollision(GameConstants.Tiles.FOREST_PACK, 'Wall');
+        let wall2 =  this.paintLayerAndCreateCollision(GameConstants.Tiles.FOREST_PACK, 'Wall2');
         this.findTransparentObjects(GameConstants.Layers.LIMITS, GameConstants.Sprites.Limit.KEY, false, true);
         
         //MUSIC and AUDIOS
@@ -66,7 +70,24 @@ class Level2 extends BasicScene {
         this.joystick = this.joysticks[0];
         this.joystick.setScale(1.5);
         this.joystick.body.setAllowGravity(false);
-        this.anims.play(GameConstants.Anims.JOYSTICK, this.joystick);
+        //this.anims.play(GameConstants.Anims.JOYSTICK, this.joystick);
+
+        //Create Joystick2
+        this.joysticks2 = this.map.createFromObjects('ActionButton2', 'openwall2', GameConstants.Sprites.Joystick.KEY);
+        this.physics.world.enable(this.joysticks2);
+        this.joystick2 = this.joysticks2[0];
+        this.joystick2.setScale(1.5);
+        this.joystick2.body.setAllowGravity(false);
+        //this.anims.play(GameConstants.Anims.JOYSTICK2, this.joystick2);
+
+        //Lava
+        let pinchos = this.findTransparentObjects('Pinchos', 'Pinchos', true);
+        this.physics.add.overlap(this.daniela, pinchos, () => {
+            this.cameras.main.fadeIn(1500);
+            this.daniela.body.setVelocity(0, 0);
+            this.daniela.x = lastMap.x;
+            this.daniela.y = lastMap.y;
+        });
 
 
         //DB ACCESS
@@ -89,6 +110,12 @@ class Level2 extends BasicScene {
 
         });
 
+        this.physics.add.collider(this.daniela, this.joystick2, () => {
+            this.joystick2.destroy();
+            wall2.setCollisionByExclusion([0]);
+            wall2.alpha=0;
+        });
+
         this.physics.add.collider(this.daniela, this.cavemanclothe, () => {
             this.music.stop();
             this.cavemanclothe.destroy();
@@ -96,7 +123,34 @@ class Level2 extends BasicScene {
             this.daniela.nextScene();
         });
 
+        let climb = this.findTransparentObjects('Climb', 'Climb');
+        let climbout = this.findTransparentObjects('Climb', 'ClimbOut');
+            
+        this.physics.add.overlap(this.daniela, climb, this.climbArea, null, this);
+        this.physics.add.overlap(this.daniela, climbout, this.climbAreaOut, null, this);
+
     }
+
+        //Ladder climbing
+    climbArea(daniela, area){     
+       
+            daniela.x = area.x;
+            daniela.body.setAllowGravity(false);
+            daniela.isInLiana = true;
+            daniela.body.velocity.x = 0;
+            daniela.body.velocity.y = 0;
+        
+    }
+    
+    //Ladder out
+    climbAreaOut(daniela,area){          
+            daniela.y -= 10;        
+            daniela.isInLiana = false;        
+            daniela.body.setAllowGravity(true);
+        
+    }
+
+    
 
     update(time, delta) {
         this.daniela.update(time, delta);

@@ -206,6 +206,9 @@ const GameConstants = {
         Joystick:{
             KEY: 'joystick'
         },
+        Joystick2:{
+            KEY: 'joystick2'
+        },
         Lianas: {
             KEY: 'liana',
             ID: 'liana',
@@ -299,7 +302,8 @@ const GameConstants = {
         BRACELET: 'bracelet_move',
         EXTRAPOINT: 'extrapoint_rotate',
         CAVEMAN_CLOTHES: 'caveman_clothes_move',
-        JOYSTICK: 'joystick_move',
+        /*JOYSTICK: 'joystick_move',
+        JOYSTICK2: 'joystick_move',/*/
         CROCODILE:'swim',
         DINOWATER: 'dinowater_move',
         DINOBIRD: 'dinobird_move',
