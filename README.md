@@ -1,10 +1,10 @@
 # Daniela Middle Age
 ## Members:
   * Román Pastushenko Slautskiy
-  * Skoda Fabia Benitez Ramirez
-  * Javier Molina Maqueda
+  * FabioENP Benitez Ramirez
+  * Javier Molina Maqueda 'The new messi'
   * Rubén Barbanegra García
   * Alvaro López García 'el Pelusa'
-  * Alejandro Morales Conejo
+  * Alejandro Morales Conejillo de Indias
   
   
