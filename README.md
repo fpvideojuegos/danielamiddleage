@@ -24,11 +24,11 @@ Y con la colaboración especial de dos programadores indies Francisco Pereira Al
 # Daniela Middle Age
 ## Members:
   * Román Pastushenko Slautskiy
-  * FabioENP Benitez Ramirez
-  * Javier Molina Maqueda 'The new messi'
-  * Rubén Barbanegra García
+  * Fabio Benitez Ramirez
+  * Javier Molina Maqueda
+  * Rubén Aguilar García
   * Alvaro López García 'el Pelusa'
-  * Alejandro Morales Conejillo de Indias
+  * Alejandro Morales Conejo
   
   
 >>>>>>> 1cc11e0bce6dba04d9c62372fffb61a453a2d88b
