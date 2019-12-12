@@ -1,7 +1,6 @@
 import BasicScene from "./BasicScene.js";
 import GameConstants from "../services/GameConstants.js";
 import Invisible from "../gameObjects/Invisible.js";
-import DB from "../services/DB.js";
 
 /**
  * Level 3 . To open the next door with the Mamut
@@ -78,7 +77,7 @@ class Level3 extends BasicScene {
         this.textFruits.setScrollFactor(0);
         this.textFruits.setDepth(3);
 
-        //MAMUT
+        //Puerta
         this.mamuts = this.createEndLevelObject(GameConstants.Sprites.Mamut.KEY);
         this.physics.world.enable(this.mamuts);
         this.mamut = this.mamuts[0];
@@ -90,11 +89,7 @@ class Level3 extends BasicScene {
         this.anims.play(GameConstants.Anims.MAMUT.SLEEP, this.mamut);
 
         //FRUITS
-        //TODO: Modify with new Classes
-        //Avocado, Straberry, Cherry, Banana, Watermelon
-        
-
-        //this.fruit = this.add.sprite(100,200,"fruits",this.fruits[2]);
+      
         this.fruits = this.map.createFromObjects('Fruits', 'fruit');
         this.fruitsGroup = this.physics.add.group();
         this.fruits.map((sprite) => {
@@ -110,19 +105,7 @@ class Level3 extends BasicScene {
 
         this.physics.add.overlap(this.daniela, this.fruitsGroup, function (player, object) {
 
-           
-            
-
             if (!this.fruitDelay) {
-
-            //key collection
-            //gets the database instance
-            this.DB = store.get(GameConstants.DB.DBNAME);
-            //Sets the localstorage value
-            this.DB.items.keys = this.DB.items.keys + 1;
-            //Sets the localstorage in the database
-            store.set(GameConstants.DB.DBNAME, this.DB);    
-
                 if (this.fruitsCollected > 0) this.fruitsCollected--;                
                 this.fruitDelay = true;
 
