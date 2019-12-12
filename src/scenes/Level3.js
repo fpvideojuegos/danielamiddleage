@@ -1,6 +1,7 @@
 import BasicScene from "./BasicScene.js";
 import GameConstants from "../services/GameConstants.js";
 import Invisible from "../gameObjects/Invisible.js";
+import DB from "../services/DB.js";
 
 /**
  * Level 3 . To open the next door with the Mamut
@@ -109,7 +110,19 @@ class Level3 extends BasicScene {
 
         this.physics.add.overlap(this.daniela, this.fruitsGroup, function (player, object) {
 
+           
+            
+
             if (!this.fruitDelay) {
+
+            //key collection
+            //gets the database instance
+            this.DB = store.get(GameConstants.DB.DBNAME);
+            //Sets the localstorage value
+            this.DB.items.keys = this.DB.items.keys + 1;
+            //Sets the localstorage in the database
+            store.set(GameConstants.DB.DBNAME, this.DB);    
+
                 if (this.fruitsCollected > 0) this.fruitsCollected--;                
                 this.fruitDelay = true;
 

@@ -1,7 +1,6 @@
 import BasicScene from "./BasicScene.js";
 import GameConstants from "../services/GameConstants.js";
-import Map from "../gameObjects/Map.js";
-import DB from "../services/DB.js";
+
 
 class Level2 extends BasicScene {
     constructor() {
@@ -35,8 +34,8 @@ class Level2 extends BasicScene {
                 let lastMap = {x: this.daniela.x, y: this.daniela.y};
 
         //PRIVATE SCENE ELEMENTS
-        let wall =  this.paintLayerAndCreateCollision(GameConstants.Tiles.FOREST_PACK, 'Wall');
-        let wall2 =  this.paintLayerAndCreateCollision(GameConstants.Tiles.FOREST_PACK, 'Wall2');
+        let wall =  this.paintLayerAndCreateCollision(GameConstants.Tiles.CASTLE, 'Wall');
+        let wall2 =  this.paintLayerAndCreateCollision(GameConstants.Tiles.CASTLE, 'Wall2');
         this.findTransparentObjects(GameConstants.Layers.LIMITS, GameConstants.Sprites.Limit.KEY, false, true);
         
         //MUSIC and AUDIOS
@@ -69,6 +68,7 @@ class Level2 extends BasicScene {
         this.physics.world.enable(this.joysticks);
         this.joystick = this.joysticks[0];
         this.joystick.setScale(1.5);
+        this.joystick.setTexture(GameConstants.Sprites.Joystick.KEY);
         this.joystick.body.setAllowGravity(false);
         //this.anims.play(GameConstants.Anims.JOYSTICK, this.joystick);
 
@@ -77,6 +77,7 @@ class Level2 extends BasicScene {
         this.physics.world.enable(this.joysticks2);
         this.joystick2 = this.joysticks2[0];
         this.joystick2.setScale(1.5);
+        this.joystick2.setTexture(GameConstants.Sprites.Joystick2.KEY);
         this.joystick2.body.setAllowGravity(false);
         //this.anims.play(GameConstants.Anims.JOYSTICK2, this.joystick2);
 
@@ -89,25 +90,11 @@ class Level2 extends BasicScene {
             this.daniela.y = lastMap.y;
         });
 
-
-        //DB ACCESS
-        
         //Wall collider        
         this.physics.add.collider(this.daniela, this.joystick, () => {
             this.joystick.destroy();
             wall.setCollisionByExclusion([0]);
             wall.alpha=0;
-            //joystick collector
-
-                //gets the database instance
-            this.DB = store.get(GameConstants.DB.DBNAME);
-                //Sets the localstorage value
-            this.DB.items.joystick = true;
-                //Sets the localstorage in the database
-            store.set(GameConstants.DB.DBNAME, this.DB);    
-            
-            
-
         });
 
         this.physics.add.collider(this.daniela, this.joystick2, () => {
