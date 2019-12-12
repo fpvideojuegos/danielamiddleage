@@ -112,8 +112,8 @@
                  "type":"Bat",
                  "visible":true,
                  "width":0,
-                 "x":704,
-                 "y":213
+                 "x":1267,
+                 "y":321
                 }, 
                 {
                  "height":0,
@@ -124,8 +124,8 @@
                  "type":"Bat",
                  "visible":true,
                  "width":0,
-                 "x":313,
-                 "y":122
+                 "x":494,
+                 "y":573
                 }, 
                 {
                  "height":0,
@@ -162,6 +162,18 @@
                  "width":0,
                  "x":658,
                  "y":636
+                }, 
+                {
+                 "height":0,
+                 "id":100,
+                 "name":"Bat",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Bat",
+                 "visible":true,
+                 "width":0,
+                 "x":337,
+                 "y":220
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -352,7 +364,7 @@
          "y":0
         }],
  "nextlayerid":18,
- "nextobjectid":100,
+ "nextobjectid":101,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.5",
