@@ -1,5 +1,5 @@
 /* Las constantes del juego */
-const GameConstants = { 
+const GameConstants = {
     DB: {
         DBNAME: 'gamedatav0_04'
     },
