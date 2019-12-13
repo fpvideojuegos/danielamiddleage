@@ -15,11 +15,14 @@ class Level3 extends BasicScene {
     }
 
     create() {
-      
+
         //Daniela Creation
         this.createDaniela(GameConstants.Sprites.DanielaTroglo, false);
         //Background
-        this.createRepeatedBackground(GameConstants.Textures.BG_LEVEL3, defaultStatus, defaultStatus, {x: 1, y: 1});
+        this.createRepeatedBackground(GameConstants.Textures.BG_LEVEL3, defaultStatus, defaultStatus, {
+            x: 1,
+            y: 1
+        });
         //Finding enemies in json map
         this.findAndLoadEnemiesFromMap(GameConstants.Enemies_Layers.Level3);
         //ExtraPoints        
@@ -31,8 +34,8 @@ class Level3 extends BasicScene {
         this.paintLayerAndCreateCollision(GameConstants.Tiles.GRASS_TILES, GameConstants.Layers.LANDSCAPE, false);
 
         //PRIVATE SCENE ELEMENTS
-        this.findTransparentObjects(GameConstants.Layers.SPIKES,GameConstants.Sprites.Spike.KEY, true);
-        
+        this.findTransparentObjects(GameConstants.Layers.SPIKES, GameConstants.Sprites.Spike.KEY, true);
+
         //FRUITS COLLECTED
         this.fruitsCollected = 5;
         this.fruitDelay = false;
@@ -42,31 +45,33 @@ class Level3 extends BasicScene {
         this.audioLevel3_DANIELA_WhatAProblem_07 = this.sound.add(this.TG.getActualLang() + "_" + GameConstants.Sound.Level3.DANIELA_QUESTION);
         this.addEventForMusic(this.audioLevel3_DANIELA_WhatAProblem_07);
         this.audioLevel3_LOLO_YouHaveToGiveMammoth_08 = this.sound.add(this.TG.getActualLang() + "_" + GameConstants.Sound.Level3.LOLO_ANSWER);
-        this.addEventForMusic(this.audioLevel3_LOLO_YouHaveToGiveMammoth_08,false,4000);
+        this.addEventForMusic(this.audioLevel3_LOLO_YouHaveToGiveMammoth_08, false, 4000);
 
         //BSO
-        this.music = this.sound.add(GameConstants.Sound.Level3.BSO, {volume: 0.4});
+        this.music = this.sound.add(GameConstants.Sound.Level3.BSO, {
+            volume: 0.4
+        });
         this.addEventForMusic(this.music, true);
 
         //We did it
         this.soundLOLO_Bien_lo_hemos_conseguido = this.sound.add(this.TG.getActualLang() + "_" + GameConstants.Sound.LEVELALL.WEDIDIT);
-        
+
         //FX Soundos
         this.fruitPickUpSound = this.sound.add(GameConstants.Sound.BONUSLEVEL.FRUITPICKUP);
-        this.powerUpSound = this.sound.add(GameConstants.Sound.BONUSLEVEL.POWERUP);         
-                
+        this.powerUpSound = this.sound.add(GameConstants.Sound.BONUSLEVEL.POWERUP);
+
         //Text Dialog
-        this.textDialog = this.add.dynamicBitmapText(20, this.cameras.main.height - 45, GameConstants.Fonts.PIXEL, this.TG.tr('LEVEL3.WHATAPROBLEM') + "\n\n" + this.TG.tr('LEVEL3.GIVEMAMMOTH'),10 );
+        this.textDialog = this.add.dynamicBitmapText(20, this.cameras.main.height - 45, GameConstants.Fonts.PIXEL, this.TG.tr('LEVEL3.WHATAPROBLEM') + "\n\n" + this.TG.tr('LEVEL3.GIVEMAMMOTH'), 10);
         this.textDialog.setScrollFactor(0);
         this.textDialog.setDepth(3);
-       
-
-
-       
 
 
 
-       
+
+
+
+
+
         //Text Dialog
         this.textDialog = this.add.dynamicBitmapText(30, 570, 'pixel', GameConstants.Texts.BUSCAR_ROPA_TROGLODITA.toUpperCase(), 16);
         this.textDialog.setScrollFactor(0);
@@ -85,11 +90,11 @@ class Level3 extends BasicScene {
         this.mamut.body.setSize(156, 79);
         this.mamut.body.setImmovable(true);
         this.mamut.body.setAllowGravity(false);
-      //  console.log(this.mamut);
+        //  console.log(this.mamut);
         this.anims.play(GameConstants.Anims.MAMUT.SLEEP, this.mamut);
 
         //FRUITS
-      
+
         this.fruits = this.map.createFromObjects('Fruits', 'fruit');
         this.fruitsGroup = this.physics.add.group();
         this.fruits.map((sprite) => {
@@ -106,7 +111,15 @@ class Level3 extends BasicScene {
         this.physics.add.overlap(this.daniela, this.fruitsGroup, function (player, object) {
 
             if (!this.fruitDelay) {
-                if (this.fruitsCollected > 0) this.fruitsCollected--;                
+                //key collection
+                //gets the database instance
+                this.DB = store.get(GameConstants.DB.DBNAME);
+                //Sets the localstorage value
+                this.DB.items.keys = this.DB.items.keys + 1;
+                //Sets the localstorage in the database
+                store.set(GameConstants.DB.DBNAME, this.DB);
+
+                if (this.fruitsCollected > 0) this.fruitsCollected--;
                 this.fruitDelay = true;
 
                 this.textFruits.setText(this.TG.tr('LEVEL3.FRUITS') + " " + this.fruitsCollected);
@@ -129,8 +142,8 @@ class Level3 extends BasicScene {
                 if (this.fruitsCollected === 0) {
                     this.powerUpSound.play();
                     this.anims.play(GameConstants.Anims.MAMUT.HAPPY, this.mamut);
-                }else{
-                    this.fruitPickUpSound.play();   
+                } else {
+                    this.fruitPickUpSound.play();
                 }
 
                 this.time.addEvent({
@@ -164,12 +177,12 @@ class Level3 extends BasicScene {
         });
     }
 
-    col(){
+    col() {
         console.log("colision")
     }
     checkOverlap(daniela, layer) {
 
-       
+
 
         return Phaser.Rectangle.intersects(boundsA, boundsB);
 

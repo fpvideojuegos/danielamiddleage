@@ -651,7 +651,8 @@ class BasicScene extends Phaser.Scene {
             this.DB = store.get(GameConstants.DB.DBNAME);
             //Sets the localstorage value
             if(this.DB.items.keys > 0)  {
-            var keyImage = this.add.image(this.daniela.x + 160, this.daniela.y - 40, 'joystick').setDepth(1).setScale(0.35);
+                console.log("hay llaves")
+            var keyImage = this.add.image(this.daniela.x + 160, this.daniela.y - 40, 'joystick').setDepth(1).setScale(2);
             }
 
         let closed = false;
